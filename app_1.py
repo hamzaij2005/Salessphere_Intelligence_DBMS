@@ -1,4 +1,3 @@
-
 import os
 os.environ["NUMPY_EXPERIMENTAL_ARRAY_FUNCTION"] = "0"
 import streamlit as st
@@ -33,6 +32,7 @@ def logout():
     for key in ["authenticated", "username", "role", "user_name"]:
         st.session_state.pop(key, None)
     st.rerun()
+    # Logout method
 
 # ─────────────────────────────────────────────
 #  PAGE CONFIG
