@@ -32,7 +32,6 @@ def logout():
     for key in ["authenticated", "username", "role", "user_name"]:
         st.session_state.pop(key, None)
     st.rerun()
-    # Logout method
 
 # ─────────────────────────────────────────────
 #  PAGE CONFIG
@@ -43,9 +42,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
-# If you accidentally close the sidebar, click the ">" arrow in the top-left corner to reopen it.
-# This code ensures it starts in the 'expanded' state.
 
 # ─────────────────────────────────────────────
 #  GLOBAL CSS
@@ -504,7 +500,8 @@ def apply_theme(fig, height=340, legend=True):
         ),
         yaxis=dict(
             gridcolor=GRID, linecolor=GRID, zerolinecolor=GRID,
-            tickfont=dict(size=11), title_font=dict(size=11)
+            tickfont=dict(size=11), title_font=dict(size=11),
+            tickprefix="₨ ", tickformat=".0s"   # <-- FORMAT IN THOUSANDS/MILLIONS
         ),
     )
     return fig
@@ -649,7 +646,7 @@ if page == "Overview":
                 fig = go.Figure()
                 fig.add_trace(go.Scatter(x=monthly["month"], y=monthly["revenue"], mode="lines", line=dict(color="#E8C547", width=2.5), fill="tozeroy", fillcolor="rgba(232,197,71,0.06)", hovertemplate="<b>%{x}</b><br>₨ %{y:,.0f}<extra></extra>"))
                 fig.add_trace(go.Scatter(x=monthly["month"], y=monthly["revenue"], mode="markers", marker=dict(size=5, color="#E8C547", line=dict(width=2, color=CHART_BG)), showlegend=False, hovertemplate="<b>%{x}</b><br>₨ %{y:,.0f}<extra></extra>"))
-                fig.update_layout(yaxis_tickprefix="₨ ", yaxis_tickformat=",.0f", xaxis_tickangle=-35, showlegend=False)
+                fig.update_layout(xaxis_tickangle=-35, showlegend=False)
                 chart(fig, 280)
             st.markdown("</div>", unsafe_allow_html=True)
         with col2:
@@ -677,7 +674,7 @@ if page == "Overview":
             top5 = q(f"SELECT pr.name AS product, ROUND(SUM(oi.unit_price*oi.quantity)::numeric,2) AS revenue FROM order_items oi JOIN products pr ON oi.product_id=pr.product_id JOIN orders o ON oi.order_id=o.order_id WHERE EXTRACT(YEAR FROM o.order_date) IN {years_sql} GROUP BY pr.name ORDER BY revenue DESC LIMIT 5")
             if not top5.empty:
                 fig = go.Figure(go.Bar(y=top5["product"], x=top5["revenue"], orientation="h", marker=dict(color=top5["revenue"], colorscale=[[0, "#1F2D3D"], [1, "#E8C547"]], showscale=False, line_width=0), text=["₨ " + f"{v/1000:.0f}K" for v in top5["revenue"]], textposition="outside", textfont=dict(color="#94A3B8", size=11), hovertemplate="<b>%{y}</b><br>₨ %{x:,.0f}<extra></extra>"))
-                fig.update_layout(yaxis_autorange="reversed", xaxis_tickprefix="₨ ", xaxis_tickformat=",.0f", showlegend=False)
+                fig.update_layout(yaxis_autorange="reversed", showlegend=False)
                 chart(fig, 240)
             st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
@@ -695,7 +692,7 @@ elif page == "Sales":
             for i, yr in enumerate(sorted(yearly["year"].unique())):
                 d = yearly[yearly["year"] == yr].sort_values("month_num")
                 fig.add_trace(go.Scatter(x=d["month_name"], y=d["revenue"], name=str(yr), mode="lines+markers", line=dict(color=line_colors[i % 3], width=2.5), marker=dict(size=7, color=line_colors[i % 3], line=dict(width=2, color=CHART_BG)), hovertemplate=f"<b>{yr} %{{x}}</b><br>₨ %{{y:,.0f}}<extra></extra>"))
-            fig.update_layout(yaxis_tickprefix="₨ ", yaxis_tickformat=",.0f", legend_title="Year")
+            fig.update_layout(legend_title="Year")
             chart(fig, 320)
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -707,7 +704,7 @@ elif page == "Sales":
             if not quarterly.empty:
                 quarterly["label"] = quarterly["year"].astype(str) + " Q" + quarterly["quarter"].astype(str)
                 fig = go.Figure(go.Bar(x=quarterly["label"], y=quarterly["revenue"], marker=dict(color=quarterly["revenue"], colorscale=[[0, "#1A2332"], [0.5, "#2DD4BF"], [1, "#E8C547"]], showscale=False, line_width=0), hovertemplate="<b>%{x}</b><br>₨ %{y:,.0f}<extra></extra>"))
-                fig.update_layout(yaxis_tickprefix="₨ ", yaxis_tickformat=",.0f", bargap=0.3)
+                fig.update_layout(bargap=0.3)
                 chart(fig, 280)
             st.markdown("</div>", unsafe_allow_html=True)
         with col2:
@@ -715,7 +712,7 @@ elif page == "Sales":
             pm = q(f"SELECT p.method, COUNT(*) AS cnt, ROUND(SUM(p.amount)::numeric,2) AS total FROM orders o JOIN payments p ON o.order_id=p.order_id WHERE EXTRACT(YEAR FROM o.order_date) IN {years_sql} GROUP BY p.method ORDER BY total DESC")
             if not pm.empty:
                 fig = go.Figure(go.Bar(x=pm["method"], y=pm["total"], marker=dict(color=PALETTE[:len(pm)], line_width=0), text=["₨ " + f"{v/1000:.0f}K" for v in pm["total"]], textposition="outside", textfont=dict(size=11, color="#94A3B8"), hovertemplate="<b>%{x}</b><br>₨ %{y:,.0f}<extra></extra>"))
-                fig.update_layout(yaxis_tickprefix="₨ ", yaxis_tickformat=",.0f", bargap=0.35, showlegend=False)
+                fig.update_layout(bargap=0.35, showlegend=False)
                 chart(fig, 280)
             st.markdown("</div>", unsafe_allow_html=True)
 
@@ -744,7 +741,7 @@ elif page == "Customers":
             st.markdown("<div class='chart-card'><div class='chart-title'>Top 10 Customers by Revenue</div>", unsafe_allow_html=True)
             if not top_cust.empty:
                 fig = go.Figure(go.Bar(y=top_cust["name"], x=top_cust["revenue"], orientation="h", marker=dict(color=top_cust["revenue"], colorscale=[[0, "#1A2332"], [1, "#E8C547"]], showscale=False, line_width=0), text=["₨ " + f"{v/1000:.0f}K" for v in top_cust["revenue"]], textposition="outside", textfont=dict(size=11, color="#94A3B8"), hovertemplate="<b>%{y}</b><br>₨ %{x:,.0f}<extra></extra>"))
-                fig.update_layout(yaxis_autorange="reversed", xaxis_tickprefix="₨ ", xaxis_tickformat=",.0f", showlegend=False)
+                fig.update_layout(yaxis_autorange="reversed", showlegend=False)
                 chart(fig, 360)
             st.markdown("</div>", unsafe_allow_html=True)
         with col2:
@@ -762,7 +759,7 @@ elif page == "Customers":
             fig = px.scatter(freq, x="order_count", y="total_spent", hover_name="name", size="total_spent", size_max=30, color="total_spent", color_continuous_scale=[[0, "#1A2332"], [0.4, "#38BDF8"], [0.7, "#2DD4BF"], [1, "#E8C547"]], labels={"order_count": "Number of Orders", "total_spent": "Total Spent (₨)"})
             fig.update_traces(marker=dict(line=dict(width=1, color=CHART_BG), opacity=0.85))
             fig.update_coloraxes(showscale=False)
-            fig.update_layout(yaxis_tickprefix="₨ ", yaxis_tickformat=",.0f")
+            fig.update_layout(yaxis_tickprefix="₨ ", yaxis_tickformat=".0s")
             chart(fig, 320)
         st.markdown("</div>", unsafe_allow_html=True)
         sec("CUSTOMER LEADERBOARD")
@@ -785,7 +782,7 @@ elif page == "Products":
             st.markdown("<div class='chart-card'><div class='chart-title'>Revenue by Category</div>", unsafe_allow_html=True)
             if not cat.empty:
                 fig = go.Figure(go.Bar(x=cat["category"], y=cat["revenue"], marker=dict(color=PALETTE[:len(cat)], line_width=0), text=["₨ " + f"{v/1000:.0f}K" for v in cat["revenue"]], textposition="outside", textfont=dict(size=10, color="#94A3B8"), hovertemplate="<b>%{x}</b><br>₨ %{y:,.0f}<extra></extra>"))
-                fig.update_layout(xaxis_tickangle=-30, yaxis_tickprefix="₨ ", yaxis_tickformat=",.0f", bargap=0.3, showlegend=False)
+                fig.update_layout(xaxis_tickangle=-30, bargap=0.3, showlegend=False)
                 chart(fig, 300)
             st.markdown("</div>", unsafe_allow_html=True)
         with col2:
@@ -801,7 +798,7 @@ elif page == "Products":
         if not prod_detail.empty:
             fig = px.bar(prod_detail, x="product", y="revenue", color="category", color_discrete_sequence=PALETTE, hover_data={"units_sold": True}, labels={"revenue": "Revenue (₨)", "product": ""})
             fig.update_traces(marker_line_width=0)
-            fig.update_layout(xaxis_tickangle=-30, yaxis_tickprefix="₨ ", yaxis_tickformat=",.0f", legend_title="Category", bargap=0.25)
+            fig.update_layout(xaxis_tickangle=-30, legend_title="Category", bargap=0.25)
             chart(fig, 340)
         st.markdown("</div>", unsafe_allow_html=True)
         sec("STOCK HEALTH")
@@ -841,7 +838,7 @@ elif page == "Payments":
             if not pm.empty:
                 avgs = (pm["total"] / pm["transactions"]).round(0)
                 fig = go.Figure(go.Bar(x=pm["method"], y=avgs, marker=dict(color=PALETTE[:len(pm)], line_width=0), text=["₨ " + f"{v:,.0f}" for v in avgs], textposition="outside", textfont=dict(size=11, color="#94A3B8"), hovertemplate="<b>%{x}</b><br>₨ %{y:,.0f}<extra></extra>"))
-                fig.update_layout(yaxis_tickprefix="₨ ", yaxis_tickformat=",.0f", bargap=0.35, showlegend=False)
+                fig.update_layout(bargap=0.35, showlegend=False)
                 chart(fig, 300)
             st.markdown("</div>", unsafe_allow_html=True)
         sec("PAYMENT TIMELINE")
@@ -850,7 +847,7 @@ elif page == "Payments":
         if not pt.empty:
             fig = px.area(pt, x="month", y="total", color="method", color_discrete_sequence=PALETTE, labels={"total": "Revenue (₨)", "month": ""})
             fig.update_traces(line_width=1.5)
-            fig.update_layout(xaxis_tickangle=-35, yaxis_tickprefix="₨ ", yaxis_tickformat=",.0f", legend_title="Method")
+            fig.update_layout(xaxis_tickangle=-35, legend_title="Method")
             chart(fig, 320)
         st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
@@ -946,9 +943,10 @@ elif page == "SQL Explorer":
                         elif chart_type == "Pie Chart": fig = go.Figure(go.Pie(labels=result[x_col], values=result[y_col], hole=0.5, marker=dict(colors=PALETTE, line=dict(color=CHART_BG, width=2))))
                         elif chart_type == "Scatter Plot" and len(num_cols) >= 2: fig = px.scatter(result, x=num_cols[0], y=num_cols[1], hover_name=x_col, color_discrete_sequence=[PALETTE[0]])
                         else: fig = go.Figure(go.Bar(x=result[x_col], y=result[y_col], marker=dict(color=PALETTE[0], line_width=0)))
+                        # Apply the same y-axis formatting for SQL charts
+                        fig.update_layout(yaxis_tickprefix="₨ ", yaxis_tickformat=".0s")
                         chart(fig, 360)
                         st.markdown("</div>", unsafe_allow_html=True)
                 else:
                     st.info("Query returned no results.")
             except Exception as e: st.error(f"Query error: {e}")
-        st.markdown("</div>", unsafe_allow_html=True)
