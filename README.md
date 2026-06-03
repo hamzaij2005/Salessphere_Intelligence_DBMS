@@ -96,16 +96,25 @@ git clone https://github.com/your-username/salessphere.git
 cd salessphere
 
 ---
-## 📸 Demo
+### 🖼️ Web App Screenshots
 
-| Overview | Sales Analytics |
-|----------|----------------|
-| ![Demo 1](Images/demo_1.png) | ![Demo 2](Images/demo_2.png) |
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 20px 0;">
+    <div style="flex: 1 1 300px; text-align: center;">
+        <img src="images/demo1.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+    </div>
+    <div style="flex: 1 1 300px; text-align: center;">
+        <img src="images/demo2.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+    </div>
+    <div style="flex: 1 1 300px; text-align: center;">
+        <img src="images/demo3.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+    </div>
+</div>
 
-| Customer Insights | Product Intelligence |
-|------------------|----------------------|
-| ![Demo 3](Images/demo_3.png) | ![Demo 4](Images/demo_4.png) |
-
-| Payment Analysis | SQL Explorer |
-|----------------|--------------|
-| ![Demo 5](Images/demo_5.png) | – |
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 20px 0;">
+    <div style="flex: 1 1 300px; text-align: center;">
+        <img src="images/demo4.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+    </div>
+    <div style="flex: 1 1 300px; text-align: center;">
+        <img src="images/demo5.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+    </div>
+</div>
