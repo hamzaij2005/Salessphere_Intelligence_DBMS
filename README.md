@@ -98,16 +98,16 @@ cd salessphere
 ---
 ---
 ### 🔹 Demo 1
-![Demo 1](images/demo_1.png)
+![Demo 1](Images/demo_1.png)
 
 ### 🔹 Demo 2
-![Demo 2](images/demo_2.png)
+![Demo 2](Images/demo_2.png)
 
 ### 🔹 Demo 3
-![Demo 3](images/demo_3.png)
+![Demo 3](Images/demo_3.png)
 
 ### 🔹 Demo 4
-![Demo 4](images/demo_4.png)
+![Demo 4](Images/demo_4.png)
 
 ### 🔹 Demo 5
-![Demo 5](images/demo_5.png)
+![Demo 5](Images/demo_5.png)
