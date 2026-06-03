@@ -94,3 +94,20 @@ SalesSphere is a modern interactive **sales analytics dashboard** built using St
 ```bash
 git clone https://github.com/your-username/salessphere.git
 cd salessphere
+
+---
+---
+### 🔹 Demo 1
+![Demo 1](images/demo_1.png)
+
+### 🔹 Demo 2
+![Demo 2](images/demo_2.png)
+
+### 🔹 Demo 3
+![Demo 3](images/demo_3.png)
+
+### 🔹 Demo 4
+![Demo 4](images/demo_4.png)
+
+### 🔹 Demo 5
+![Demo 5](images/demo_5.png)
