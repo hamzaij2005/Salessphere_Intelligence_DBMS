@@ -100,21 +100,21 @@ cd salessphere
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 20px 0;">
     <div style="flex: 1 1 300px; text-align: center;">
-        <img src="images/demo1.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+        <img src="images/demo_1.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
     </div>
     <div style="flex: 1 1 300px; text-align: center;">
-        <img src="images/demo2.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+        <img src="images/demo_2.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
     </div>
     <div style="flex: 1 1 300px; text-align: center;">
-        <img src="images/demo3.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+        <img src="images/demo_3.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
     </div>
 </div>
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 20px 0;">
     <div style="flex: 1 1 300px; text-align: center;">
-        <img src="images/demo4.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+        <img src="images/demo_4.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
     </div>
     <div style="flex: 1 1 300px; text-align: center;">
-        <img src="images/demo5.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
+        <img src="images/demo_5.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
     </div>
 </div>
