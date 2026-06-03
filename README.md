@@ -96,18 +96,16 @@ git clone https://github.com/your-username/salessphere.git
 cd salessphere
 
 ---
----
-### 🔹 Demo 1
-![Demo 1](Images/demo_1.png)
+## 📸 Demo
 
-### 🔹 Demo 2
-![Demo 2](Images/demo_2.png)
+| Overview | Sales Analytics |
+|----------|----------------|
+| ![Demo 1](Images/demo_1.png) | ![Demo 2](Images/demo_2.png) |
 
-### 🔹 Demo 3
-![Demo 3](Images/demo_3.png)
+| Customer Insights | Product Intelligence |
+|------------------|----------------------|
+| ![Demo 3](Images/demo_3.png) | ![Demo 4](Images/demo_4.png) |
 
-### 🔹 Demo 4
-![Demo 4](Images/demo_4.png)
-
-### 🔹 Demo 5
-![Demo 5](Images/demo_5.png)
+| Payment Analysis | SQL Explorer |
+|----------------|--------------|
+| ![Demo 5](Images/demo_5.png) | – |
