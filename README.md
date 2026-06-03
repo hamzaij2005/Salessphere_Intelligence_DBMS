@@ -99,22 +99,11 @@ cd salessphere
 ### 🖼️ Web App Screenshots
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 20px 0;">
-    <div style="flex: 1 1 300px; text-align: center;">
-        <img src="Images/demo_1.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
-    </div>
-    <div style="flex: 1 1 300px; text-align: center;">
-        <img src="Images/demo_2.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
-    </div>
-    <div style="flex: 1 1 300px; text-align: center;">
-        <img src="Images/demo_3.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
-    </div>
+  <img src="Images/demo_1.png" width="300" alt="Demo 1"/>
+  <img src="Images/demo_2.png" width="300" alt="Demo 2"/>
+  <img src="Images/demo_3.png" width="300" alt="Demo 3"/>
 </div>
-
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 20px 0;">
-    <div style="flex: 1 1 300px; text-align: center;">
-        <img src="Images/demo_4.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
-    </div>
-    <div style="flex: 1 1 300px; text-align: center;">
-        <img src="Images/demo_5.png" width="100%" style="max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"/>
-    </div>
+  <img src="Images/demo_4.png" width="300" alt="Demo 4"/>
+  <img src="Images/demo_5.png" width="300" alt="Demo 5"/>
 </div>
